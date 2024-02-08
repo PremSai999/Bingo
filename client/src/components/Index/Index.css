@@ -1,0 +1,23 @@
+.player-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .player-selection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-selection select {
+    margin-right: 10px; /* Add spacing between select and buttons */
+  }
+  
+  .action-buttons {
+    margin-top: 10px; /* Add spacing between buttons */
+  }
+  
+  .or {
+    margin-top: 10px; /* Add spacing above "OR" */
+  }
+  
