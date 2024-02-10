@@ -1,3 +1,29 @@
 .strike{
     background-color: red;
 }
+
+.player-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+  }
+  
+  .player {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+  
+  .current-player {
+    background-color: #ffa500;
+  }
+.bingo-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+  

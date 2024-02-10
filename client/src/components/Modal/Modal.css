@@ -1,0 +1,29 @@
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top of the screen */
+  padding-top: 50px; /* Add padding to the top to create space */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%; /* Set a wider width */
+  max-width: 600px; /* Add a maximum width to prevent modal from stretching too wide */
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content button {
+  margin-top: 10px;
+}

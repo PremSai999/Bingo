@@ -8,6 +8,7 @@ import Game from './components/Game/Game';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Join from './components/Join/Join';
+import TempGame from './components/Game/TempGame';
 
 function App() {
   

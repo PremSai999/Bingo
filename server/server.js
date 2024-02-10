@@ -27,10 +27,18 @@ const io = socketIo(server, {
 io.on('connection', (socket) => {
     console.log('New client connected');
 	socket.on('join-room',(room)=>{
+		console.log("joined")
 		socket.join(room);
-		socket.to(room).emit('getRoom',room)
+		io.to(room).emit('getRoom',room)
 	}
 	)
+	socket.on('click',(data)=>{
+		socket.to(data.room).emit('clicked',data.val)
+	})
+	socket.on('sendWinner',(data)=>{
+		io.to(data.room).emit('receiveWinner',data.name)
+	})
+
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     });
@@ -143,7 +151,7 @@ app.post('/getPlayers', async (req, res)=>{
 		id : req.body.room,
 	})
 	if (room) {
-		return res.json({ status: 'ok', players:room.players, full:room.totalPlayers===room?.players?.length})
+		return res.json({ status: 'ok', players:room.players, full:room.readyCount>=room.totalPlayers})
 	}
 	else{
 		return res.json({ status: 'error'})

@@ -11,7 +11,7 @@ function Navbar({protect}) {
         console.log(protect,token)
         if (!protect){
           if(!token)
-            navigate('/login')
+          window.location.pathname==='/signup' ? navigate('/signup') :  navigate('/login')
           else
               navigate('/')
         }
