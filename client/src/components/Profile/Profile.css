@@ -1,0 +1,27 @@
+.profile-page {
+    font-family: sans-serif;
+    width: 400px; /* Adjust width as needed */
+    margin: 0 auto;
+    margin-top: 5px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .info-item {
+    margin-bottom: 10px;
+    width: 48%; /* Adjust width if needed */
+  }
+  
+  .info-item label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  

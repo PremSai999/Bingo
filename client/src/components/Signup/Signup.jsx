@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "../../context/UserContext"
 import { useNavigate } from "react-router-dom";
+import { signup } from "../../utils/gameFuncs";
 import '../../App.css'
 
 
@@ -12,20 +13,7 @@ function Signup() {
 	async function registerUser(event) {
 		event.preventDefault()
 
-		const response = await fetch('http://localhost:4000/api/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				name,
-				email,
-				password,
-			}),
-		})
-
-		const data = await response.json()
-
+		const data = await signup(name, email, password);
 		if (data.status === 'ok') {
 			navigate('/login')
 		}

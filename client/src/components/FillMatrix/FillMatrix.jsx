@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { BingoContext } from '../../context/BingoContext';
+import { updateReady } from '../../utils/gameFuncs';
 import './FillMatrix.css'
 
 function FillMatrix() {
@@ -30,60 +31,42 @@ function FillMatrix() {
         const updatedMatrix = matrix.map(row => 
             row.map(ele => ({ value: ele, strike: false }))
         )
-        await fetch("http://localhost:4000/updateReady",{
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                roomId,
-                }),
-                }) 
-        setMatrix(updatedMatrix)
-        // sessionStorage.setItem('matrix',JSON.stringify(updatedMatrix))
-        navigate('/game')
+        const data = await updateReady(roomId)
+        if(data.status==='ok'){
+            setMatrix(updatedMatrix)
+            navigate('/game')
+        }
     }
     const startGame = async()=>{
         if(count===26){
-            await fetch("http://localhost:4000/updateReady",{
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                roomId,
-                }),
-                }) 
-            setMatrix(updatedMatrix)
-            // sessionStorage.setItem('matrix',JSON.stringify(matrix))
-            // sessionStorage.setItem('turn',0)
-            // sessionStorage.setItem('players',null)
-            navigate('/game')
+            const data = await updateReady(roomId)
+            if(data.status==='ok'){
+                setMatrix(matrix)
+                navigate('/game')
+            }
         }
     }
 
     return (
-        <div>
+
+        <div className="matrix-container">
             <h1>The room you've joined is {roomId}</h1>
-            <div className="matrix-container">
-                {matrix.map((row, rowIndex) => (
-                <div key={rowIndex} className="matrix-row">
-                    {row.map((number, colIndex) => (
-                    <button
-                        key={colIndex}
-                        className="matrix-button"
-                        onClick={() => assignNumber(rowIndex, colIndex)}
-                    >
-                        {number !=null && number.value !== null && number.value}
-                    </button>
-                    ))}
-                </div>
+            {matrix.map((row, rowIndex) => (
+            <div key={rowIndex} className="matrix-row">
+                {row.map((number, colIndex) => (
+                <button
+                    key={colIndex}
+                    className="matrix-button"
+                    onClick={() => assignNumber(rowIndex, colIndex)}
+                >
+                    {number !=null && number.value !== null && number.value}
+                </button>
                 ))}
             </div>
+            ))}
             <button onClick={startGame}>Ready</button>
             <button onClick={temp}>temp</button>
         </div>
-        
     )
 }
 

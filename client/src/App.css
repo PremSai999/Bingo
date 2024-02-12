@@ -1,10 +1,10 @@
 html{
     margin:-10px;
 }
+body{
+  background-color: #f7f7f7;
+}
 
-/* RegisterForm.css */
-
-/* Style for the form container */
 .register-form {
     max-width: 400px;
     margin: 5% auto;
@@ -13,14 +13,10 @@ html{
     border-radius: 5px;
     background-color: #f9f9f9;
   }
-  
-  /* Style for form headings */
   .register-form h1 {
     font-size: 24px;
     margin-bottom: 20px;
   }
-  
-  /* Style for form inputs */
   .register-form input {
     width: 90%;
     margin-bottom: 15px;
@@ -28,8 +24,6 @@ html{
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-  
-  /* Style for submit button */
   .register-form input[type="submit"] {
     width: 95%;
     background-color: #007bff;
@@ -39,8 +33,6 @@ html{
     padding: 10px 20px;
     cursor: pointer;
   }
-  
-  /* Style for submit button on hover */
   .register-form input[type="submit"]:hover {
     background-color: #0056b3;
   }

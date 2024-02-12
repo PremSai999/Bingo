@@ -6,6 +6,7 @@ import { findIndices } from '../../utils/findIndices';
 import { checkStart } from '../../utils/gameFuncs';
 import Modal from '../Modal/Modal';
 import './Game.css'
+import Chat from '../Chat/Chat';
 
 function Game() {
     
@@ -18,6 +19,7 @@ function Game() {
     const [players, setPlayers] = useState([])
     const [called, setCalled] = useState(false)
     const [winner, setWinner] = useState(null)
+    const [join, setJoin] = useState(false)
     const room = sessionStorage.getItem('room');
     const name = sessionStorage.getItem('name');
 
@@ -25,7 +27,8 @@ function Game() {
     useEffect(()=>{
         if(socket && !started){
             socket.emit('join-room',room)
-            socket.on('getRoom',(room)=>{                
+            socket.on('getRoom',(room)=>{  
+                setJoin(true)              
                 checkStart(room).then(res=>{
                     if(res){
                         setStarted(res.full)
@@ -41,6 +44,7 @@ function Game() {
 
     useEffect(() => {
         if (players.length>1 && !called){
+            console.log("entered", players)
             socket.on('clicked',(val)=>{
                 console.log(players,"gg")
                 const data = findIndices(matrix,val)
@@ -120,6 +124,7 @@ function Game() {
                     ))}
                 </div>
                 {winner && <Modal winner={winner} />}
+                {socket && <Chat socket={socket} join={join}/>}
             </div>
             :
             <div>

@@ -1,40 +1,23 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { BingoContext } from '../../context/BingoContext';
+import { checkRoom, updatePlayer } from '../../utils/gameFuncs';
+import './Join.css'
 
 function Join() {
   const {roomId, setRoomId} = useContext(BingoContext);
+  const name = sessionStorage.getItem('name');
   const navigate = useNavigate();
 
   const joinRoom = async ()=>{
-
-    const res = await fetch("http://localhost:4000/checkRoom",{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        roomId,
-      }),
-    })
-    const data = await res.json();
+    const data = await checkRoom(roomId);
     if(data.status==='ok'){
       if(data.full){
         alert("Room is full");
         return;
       }
-      sessionStorage.setItem("room",roomId)
-      const res1 = await fetch("http://localhost:4000/updatePlayer",{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          roomId,
-          name:sessionStorage.getItem("name"),
-        }),
-        })
-      const data1 = await res1.json()
+      sessionStorage.setItem("room",roomId);
+      const data1 = await updatePlayer(roomId,name)
       if(data1.status==='ok')
         navigate('/fill');
     }
@@ -42,7 +25,6 @@ function Join() {
       console.log(data.status)
       alert('Wrong Room')
     }
-    
   }
 
   useEffect(()=>{
@@ -51,10 +33,11 @@ function Join() {
     if (room) {
         setRoomId(room);
     }
-}, [setRoomId]);
+  }, [setRoomId]);
 
   return (
-    <div>
+    <div className='join-container'>
+    <div className='join-game'>
       <h1>Enter room code</h1>
       <div>
         <input
@@ -65,6 +48,7 @@ function Join() {
         />
         <button onClick={joinRoom}>Join Room</button>
       </div>
+    </div>
     </div>
   )
 }

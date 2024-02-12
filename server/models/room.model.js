@@ -6,7 +6,8 @@ const Room = new mongoose.Schema(
     leader: { type: String, required: true },
     players: { type: [String], required: true },
 	readyCount : {type : Number, required:true},
-    totalPlayers: { type: Number, required: true }
+    totalPlayers: { type: Number, required: true },
+    winner : {type: String, default:null}
 },
 	{ collection: 'game-data' }
 )

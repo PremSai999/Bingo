@@ -38,10 +38,18 @@ io.on('connection', (socket) => {
 	socket.on('sendWinner',(data)=>{
 		io.to(data.room).emit('receiveWinner',data.name)
 	})
-
+	socket.on('create-chat',(room)=>{
+		socket.join(room);
+		io.to(room).emit('join-chat',room)
+	})
+	socket.on('sendMsg',(data)=>{
+		console.log("came",data.room,data.message)
+		socket.to(data.room).emit('receiveMsg',data.message)
+	})
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     });
+	
 });
 
 app.post('/api/register', async (req, res) => {
@@ -63,16 +71,13 @@ app.post('/api/login', async (req, res) => {
 	const user = await User.findOne({
 		email: req.body.email,
 	})
-
 	if (!user) {
 		return { status: 'error', error: 'Invalid login' }
 	}
-
 	const isPasswordValid = await bcrypt.compare(
 		req.body.password,
 		user.password
 	)
-
 	if (isPasswordValid) {
 		const token = jwt.sign(
 			{
@@ -81,7 +86,6 @@ app.post('/api/login', async (req, res) => {
 			},
 			'secret123'
 		)
-
 		return res.json({ status: 'ok', user: token, name:user.name })
 	} else {
 		return res.json({ status: 'error', user: false })
@@ -157,6 +161,50 @@ app.post('/getPlayers', async (req, res)=>{
 		return res.json({ status: 'error'})
 	}
 
+})
+
+app.post('/getGameStats', async (req, res)=>{
+	const gamesPlayed = await Room.aggregate([
+						{
+						$match: {
+							players: req.body.name
+						}
+						},
+						{
+						$group: {
+							_id: null,
+							totalGamesPlayed: { $sum: 1 }
+						}
+						}
+					])
+	const gamesWon = await Room.aggregate([
+					{
+					$match: {
+						players: req.body.name, 
+						winner: req.body.name 
+					}
+					},
+					{
+					$group: {
+						_id: null,
+						totalGamesWon: { $sum: 1 }
+					}
+					}
+				])
+
+	if(gamesPlayed.length!==0){
+		if(gamesWon.length!==0){
+			res.json({gamesPlayed:gamesPlayed[0].totalGamesPlayed,
+					  gamesWon:gamesWon[0].totalGamesWon})
+		}
+		else{
+			res.json({gamesPlayed:gamesPlayed[0].totalGamesPlayed,
+				gamesWon:0})
+		}
+	}
+	else{
+		res.json({gamesPlayed:0,gamesWon:0});
+	}
 })
 
 server.listen(port, () => {

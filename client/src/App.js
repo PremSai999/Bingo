@@ -9,11 +9,10 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Join from './components/Join/Join';
 import TempGame from './components/Game/TempGame';
+import Profile from './components/Profile/Profile';
+import Chat from './components/Chat/Chat';
 
 function App() {
-  
-  
-
   const protect = window.location.pathname==='/signup'|| window.location.pathname=== '/login'?false:true;
 
   return (
@@ -27,6 +26,8 @@ function App() {
           <Route path="/join" element={<Join/>} />
           <Route path="/fill" element={<FillMatrix/>} />
           <Route path="/game" element={<Game/>} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path='/chat' element={<Chat/>} />
       </Routes>
     </Router>
     </>

@@ -1,4 +1,4 @@
-/* MatrixStyles.css */
+
 .matrix-container {
     display: flex;
     flex-direction: column;
@@ -21,9 +21,7 @@
     cursor: pointer;
   }
   
-  /* Additional styles for the h1 */
   .room-info {
     text-align: center;
     margin-bottom: 20px;
   }
-  

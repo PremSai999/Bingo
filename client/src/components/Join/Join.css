@@ -1,0 +1,38 @@
+.join-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+  }
+  
+  .join-game {
+    max-width: 400px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .join-game > h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+  
+  .join-game > div {
+    margin-top: 20px;
+  }
+  
+  .join-game input {
+    width: 90%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+  }
+  
+  .join-game button:hover {
+    background-color: #ddd; 
+  }
+  
+  

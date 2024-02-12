@@ -8,12 +8,13 @@ function Navbar({protect}) {
 
     useEffect(()=>{
         const token = sessionStorage.getItem("token")
-        console.log(protect,token)
         if (!protect){
           if(!token)
           window.location.pathname==='/signup' ? navigate('/signup') :  navigate('/login')
-          else
-              navigate('/')
+          else{
+            navigate('/')
+          }
+              
         }
         else{
           if(!token)
