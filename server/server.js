@@ -9,11 +9,13 @@ const Room = require('./models/room.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
-const port =process.env.PORT;
-const mongo_url =  process.env.MONGO_URL
-
 app.use(cors())
 app.use(express.json())
+require('dotenv').config();
+
+
+const port =process.env.PORT;
+const mongo_url =  process.env.MONGO_URL
 
 mongoose.connect(mongo_url)
 
