@@ -14,7 +14,7 @@ function Profile() {
                 console.log(res.gamesPlayed, res.gamesWon)
                 setMatchesPlayed(res.gamesPlayed)
                 setMatchesWon(res.gamesWon)
-                setWinRatio((res.gamesWon/res.gamesPlayed))
+                setWinRatio((res.gamesWon/res.gamesPlayed).toFixed(2))
             }
         }))
     }, [name]);

@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { BingoContext } from '../../context/BingoContext';
 import { updateReady } from '../../utils/gameFuncs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import copy from "clipboard-copy";
+import {toast } from 'react-toastify';
 import './FillMatrix.css'
 
 function FillMatrix() {
     const {matrix, setMatrix, roomId, setRoomId} = useContext(BingoContext);
-    
     const [count, setCount] = useState(1);
     const navigate = useNavigate();
 
@@ -16,6 +19,11 @@ function FillMatrix() {
             setRoomId(room);
         }
     },[setRoomId])
+
+    const copiedToClipboard = ()=>{
+        copy(roomId)
+        toast.success('Copied to clipboard!');
+    }
 
     const assignNumber = (row, col) => {
         const newMatrix = [...matrix];
@@ -50,7 +58,8 @@ function FillMatrix() {
     return (
 
         <div className="matrix-container">
-            <h1>The room you've joined is {roomId}</h1>
+            <h1>Room Code: {roomId} <FontAwesomeIcon icon={faCopy} onClick={copiedToClipboard} style={{ color:"#a6a6a6",cursor: 'pointer' }} /></h1>
+            {/* <ToastContainer />   */}
             {matrix.map((row, rowIndex) => (
             <div key={rowIndex} className="matrix-row">
                 {row.map((number, colIndex) => (

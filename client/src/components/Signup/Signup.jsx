@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { UserContext } from "../../context/UserContext"
 import { useNavigate } from "react-router-dom";
 import { signup } from "../../utils/gameFuncs";
+import {toast} from "react-toastify"
 import '../../App.css'
 
 
@@ -15,7 +16,11 @@ function Signup() {
 
 		const data = await signup(name, email, password);
 		if (data.status === 'ok') {
+			toast.success('Account registered successfully.')
 			navigate('/login')
+		}
+		else{
+			toast.error('Problem occured. Try again.')
 		}
 	}
 

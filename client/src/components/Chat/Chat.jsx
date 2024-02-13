@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import { useSocket } from '../../context/SocketContext';
 import './Chat.css'; 
 let x = 0;
@@ -10,22 +10,23 @@ const Chat = (props) => {
     const room = sessionStorage.getItem('room')
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
-    const [join, setJoin] = useState(false)
+    const chatMessagesRef = useRef(null);
 
     useEffect(()=>{
-        if(socket){
-            console.log('gg')
-            socket.emit('create-chat',room)
-            socket.on('join-chat',(room)=>{
-                setJoin(true)
-            })
-        }
-    },[socket])
-    // useEffect(()=>{
-    //     console.log("gg",x)
-    //     x++;
-
-    // },[])
+      if(socket){
+        socket.on("receiveMsg",(data)=>{
+          setMessages([...messages, {
+              sender: data.name,
+              text: data.message,
+              is_you: false,
+          }]);
+          console.log("came",messages)
+      })
+      }
+      if (chatMessagesRef.current) {
+        chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+      }
+    },[socket,messages])
 
     const sendMessage = () => {
         if(socket){
@@ -34,24 +35,19 @@ const Chat = (props) => {
                 text: message,
                 is_you: true,
             };
-            setMessages([...messages, newMessage]);
+            setMessages([...messages, {
+                sender: 'You',
+                text: message,
+                is_you: true,
+            }]);
             setMessage('');
-            socket.emit('sendMsg',{message,room})
-            socket.on("receiveMsg",(message)=>{
-                console.log("came")
-                const newMessage = {
-                    sender: name,
-                    text: message,
-                    is_you: false,
-                };
-                setMessages([...messages, newMessage]);
-            })
+            socket.emit('sendMsg',{message,room,name})
         }
     };
   return (
     <div className="chat-app">
     <h2 className='chat-title'>Room Chat</h2>
-    {socket && join?<ul className="chat-messages">
+    {socket ? <ul ref={chatMessagesRef} className="chat-messages">
       {messages.map((msg, index) => (
         <li key={index} className={msg.is_you ? 'message right' : 'message left'}>
           <span className="sender">{msg.sender}:</span>

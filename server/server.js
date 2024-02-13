@@ -35,7 +35,11 @@ io.on('connection', (socket) => {
 	socket.on('click',(data)=>{
 		socket.to(data.room).emit('clicked',data.val)
 	})
-	socket.on('sendWinner',(data)=>{
+	socket.on('sendWinner',async (data)=>{
+		const res = await Room.updateOne({
+			id : data.room,
+		},{winner : data.name})
+		if(res)
 		io.to(data.room).emit('receiveWinner',data.name)
 	})
 	socket.on('create-chat',(room)=>{
@@ -44,7 +48,7 @@ io.on('connection', (socket) => {
 	})
 	socket.on('sendMsg',(data)=>{
 		console.log("came",data.room,data.message)
-		socket.to(data.room).emit('receiveMsg',data.message)
+		socket.to(data.room).emit('receiveMsg',{name:data.name,message:data.message})
 	})
     socket.on('disconnect', () => {
         console.log('Client disconnected');

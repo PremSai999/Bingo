@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../utils/gameFuncs'
+import { toast } from 'react-toastify'
 import '../../App.css'
 
 function Login() {
@@ -15,10 +16,10 @@ function Login() {
 		if (data.user) {
             sessionStorage.setItem('token',data.user)
 			sessionStorage.setItem('name',data.name)
-			alert('Login successful')
+			toast.success('Login successful')
 			navigate('/')
 		} else {
-			alert('Please check your username and password')
+			toast.error('Please check your username and password')
 		}
 	}
 

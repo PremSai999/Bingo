@@ -3,7 +3,7 @@ import { BingoContext } from '../../context/BingoContext';
 import { useSocket } from '../../context/SocketContext';
 import isBingo from '../../utils/validate';
 import { findIndices } from '../../utils/findIndices';
-import { checkStart } from '../../utils/gameFuncs';
+import { checkStart} from '../../utils/gameFuncs';
 import Modal from '../Modal/Modal';
 import './Game.css'
 import Chat from '../Chat/Chat';
@@ -19,7 +19,6 @@ function Game() {
     const [players, setPlayers] = useState([])
     const [called, setCalled] = useState(false)
     const [winner, setWinner] = useState(null)
-    const [join, setJoin] = useState(false)
     const room = sessionStorage.getItem('room');
     const name = sessionStorage.getItem('name');
 
@@ -27,8 +26,7 @@ function Game() {
     useEffect(()=>{
         if(socket && !started){
             socket.emit('join-room',room)
-            socket.on('getRoom',(room)=>{  
-                setJoin(true)              
+            socket.on('getRoom',(room)=>{              
                 checkStart(room).then(res=>{
                     if(res){
                         setStarted(res.full)
@@ -54,7 +52,7 @@ function Game() {
                     const newMatrix = [...matrix];
                     newMatrix[r][c].strike = true;
                     setMatrix(newMatrix);
-                    setProgress(prevProgress => {
+                    setProgress((prevProgress) => {
                         const newProgress = isBingo(newMatrix);
                         if (newProgress > 4 && socket) {
                             socket.emit('sendWinner', { name, room });
@@ -90,41 +88,45 @@ function Game() {
 
     return (
           (socket && started && players)?
-            <div>  
-                <div className="player-list">
-                    {players.map((player, index) => (
-                        <span
-                        key={index}
-                        className={`player ${player === players[turn] ? 'current-player' : ''}`}
-                        >
-                        {player}
-                        </span>
-                    ))}
-                </div>
-                <div className="bingo-container"style={{ fontFamily: 'Arial, sans-serif', fontSize: '24px', color: 'white' }}>
-                <span style={{ color: progress > 0 ? 'red' : 'green' }}>B</span>
-                <span style={{ color: progress > 1 ? 'red' : 'green' }}>I</span>
-                <span style={{ color: progress > 2 ? 'red' : 'green' }}>N</span>
-                <span style={{ color: progress > 3 ? 'red' : 'green' }}>G</span>
-                <span style={{ color: progress > 4 ? 'red' : 'green' }}>O</span>
-                </div>
-                <div className="matrix-container">
-                    {matrix.map((row, rowIndex) => (
-                    <div key={rowIndex} className={"matrix-row"}>
-                        {row.map((number, colIndex) => (
-                        <button
-                            key={colIndex}
-                            className={`matrix-button ${number && number.strike ? 'strike':""}`}
-                            onClick={()=>clickedButton(rowIndex,colIndex)}
-                        >
-                            {number && number.value}
-                        </button>
+            <div className='game-container'> 
+                <div className='game-content'>
+                    <div className="player-list">
+                        {players.map((player, index) => (
+                            <span
+                            key={index}
+                            className={`player ${player === players[turn] ? 'current-player' : ''}`}
+                            >
+                            {player}
+                            </span>
                         ))}
                     </div>
-                    ))}
+                    <div className="bingo-container"style={{ fontFamily: 'Arial, sans-serif', fontSize: '40px', fontWeight: 'bold', color: 'white' }}>
+                    <span style={{ color: progress > 0 ? 'red' : 'green' }}>B</span>
+                    <span style={{ color: progress > 1 ? 'red' : 'green' }}>I</span>
+                    <span style={{ color: progress > 2 ? 'red' : 'green' }}>N</span>
+                    <span style={{ color: progress > 3 ? 'red' : 'green' }}>G</span>
+                    <span style={{ color: progress > 4 ? 'red' : 'green' }}>O</span>
+                    </div>
+                    <div className="matrix-container">
+                        {matrix.map((row, rowIndex) => (
+                        <div key={rowIndex} className={"matrix-row"}>
+                            {row.map((number, colIndex) => (
+                            <button
+                                key={colIndex}
+                                className={`matrix-button ${number && number.strike ? 'strike':""}`}
+                                onClick={()=>clickedButton(rowIndex,colIndex)}
+                            >
+                                {number && number.value}
+                            </button>
+                            ))}
+                        </div>
+                        ))}
+                    </div>
+                    {winner && <Modal winner={winner} />}
                 </div>
-                {winner && <Modal winner={winner} />}
-                {socket && <Chat socket={socket} join={join}/>}
+                <div className='chat-container'>
+                    {socket && <Chat socket={socket} />}
+                </div>
             </div>
             :
             <div>

@@ -1,6 +1,6 @@
    .chat-app {
     font-family: sans-serif;
-    width: 500px;
+    max-width: 500px;
     margin: 0 auto;
     margin-top: 20px;
     border: 1px solid #ccc;

@@ -11,6 +11,8 @@ import Join from './components/Join/Join';
 import TempGame from './components/Game/TempGame';
 import Profile from './components/Profile/Profile';
 import Chat from './components/Chat/Chat';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const protect = window.location.pathname==='/signup'|| window.location.pathname=== '/login'?false:true;
@@ -19,6 +21,7 @@ function App() {
     <>
     <Router>
     <Navbar protect={protect} />
+    <ToastContainer position="top-center" autoClose={2000} hideProgressBar={false}/>  
       <Routes>
           <Route path="/" element={<Index/>} />
           <Route path="/signup" element={<Signup/>} />

@@ -1,5 +1,7 @@
+const URL = process.env.REACT_APP_SERVER_URL
+
 export const signup = async (name, email, password)=>{
-    const response = await fetch('http://localhost:4000/api/register', {
+    const response = await fetch(`${URL}/api/register`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -15,7 +17,7 @@ export const signup = async (name, email, password)=>{
 }
 
 export const login = async (email, password)=>{
-    const response = await fetch('http://localhost:4000/api/login', {
+    const response = await fetch(`${URL}/api/login`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -30,7 +32,7 @@ export const login = async (email, password)=>{
 }
 
 export const checkStart = async (room)=>{
-    const res = await fetch("http://localhost:4000/getPlayers",{
+    const res = await fetch(`${URL}/getPlayers`,{
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +51,7 @@ export const checkStart = async (room)=>{
 }
 
 export const isUnique = async (room, size, name)=>{
-    const res = await fetch("http://localhost:4000/isUnique",{
+    const res = await fetch(`${URL}/isUnique`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +72,7 @@ export const isUnique = async (room, size, name)=>{
 }
 
 export const checkRoom = async (roomId)=>{
-    const res = await fetch("http://localhost:4000/checkRoom",{
+    const res = await fetch(`${URL}/checkRoom`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +86,7 @@ export const checkRoom = async (roomId)=>{
 }
 
 export const updatePlayer = async (roomId, name)=>{
-    const res = await fetch("http://localhost:4000/updatePlayer",{
+    const res = await fetch(`${URL}/updatePlayer`,{
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +101,7 @@ export const updatePlayer = async (roomId, name)=>{
 }
 
 export const updateReady = async (roomId)=>{
-    const res = await fetch("http://localhost:4000/updateReady",{
+    const res = await fetch(`${URL}/updateReady`,{
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -113,7 +115,7 @@ export const updateReady = async (roomId)=>{
 }
 
 export const getGameStats =  async (name)=>{
-    const res = await fetch("http://localhost:4000/getGameStats",{
+    const res = await fetch(`${URL}/getGameStats`,{
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
