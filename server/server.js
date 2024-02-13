@@ -8,17 +8,19 @@ const User = require('./models/user.model')
 const Room = require('./models/room.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const port = 4000;
+
+const port =process.env.PORT;
+const mongo_url =  process.env.MONGO_URL
 
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb+srv://pr3msai:pr3msai@cluster0.434n7gg.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(mongo_url)
 
 const server = http.createServer(app); 
 const io = socketIo(server, {
 	cors: {
-	  origin: 'http://localhost:3000',
+	  origin: ['http://localhost:3000',"https://bingo-chi-tan.vercel.app"],
 	  methods: ['GET', 'POST'],
 	  credentials: true
 	}
