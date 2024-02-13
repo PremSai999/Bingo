@@ -26,7 +26,7 @@ function Navbar({protect}) {
     return (
         <nav className="navbar">
           <div className="navbar-container">
-            <div className="navbar-title">Bingo</div>
+            <div className="navbar-title" onClick={()=>navigate('/')} style={{ cursor: 'pointer' }}>Bingo</div>
             <div className="profile-info">
               <MdAccountCircle className="profile-icon" />
               {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Room = new mongoose.Schema(
+const Game = new mongoose.Schema(
 	{
     id: { type: String, required: true},
     leader: { type: String, required: true },
@@ -12,6 +12,6 @@ const Room = new mongoose.Schema(
 	{ collection: 'game-data' }
 )
 
-const model = mongoose.model('roomData', Room)
+const model = mongoose.model('gameData', Game)
 
 module.exports = model 

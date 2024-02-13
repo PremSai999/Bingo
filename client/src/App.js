@@ -21,7 +21,7 @@ function App() {
     <>
     <Router>
     <Navbar protect={protect} />
-    <ToastContainer position="top-center" autoClose={2000} hideProgressBar={false}/>  
+    <ToastContainer position="top-center" autoClose={1000} hideProgressBar={false}/>  
       <Routes>
           <Route path="/" element={<Index/>} />
           <Route path="/signup" element={<Signup/>} />
