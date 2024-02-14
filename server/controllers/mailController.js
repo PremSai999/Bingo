@@ -3,7 +3,7 @@ const transporter = require('../models/mail.model')
 exports.sendWinnerMail = async(req, res)=>{
     const {name, email} = req.body
     let mailOptions = {
-        from: 'Bingo Game',
+        from: '"Bingo Game" <your-email@gmail.com>',
         to: email,
         subject: `Hello ${name}`,
         html: `<b>You've Won the bingo game</b>`

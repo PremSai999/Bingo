@@ -12,7 +12,6 @@ function Login() {
     async function loginUser(event) {
 		console.log( process.env.REACT_APP_SERVER_URL)
 		event.preventDefault()
-
 		const data = await login(email, password);
 		if (data.user) {
             sessionStorage.setItem('token',data.user)

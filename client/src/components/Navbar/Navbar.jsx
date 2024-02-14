@@ -13,6 +13,7 @@ function Navbar({protect}) {
           window.location.pathname==='/signup' ? navigate('/signup') :  navigate('/login')
           else{
             navigate('/')
+            window.location.reload()
           }
               
         }
