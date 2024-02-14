@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './Profile.css'
 import { getGameStats } from '../../utils/gameFuncs';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
     const [matchesPlayed, setMatchesPlayed] = useState(0);
     const [matchesWon, setMatchesWon] = useState(0);
     const [winRatio, setWinRatio] = useState(0);
+    const navigate = useNavigate()
     const name = sessionStorage.getItem('name')
   
     useEffect(() => {
@@ -18,6 +20,11 @@ function Profile() {
             }
         }))
     }, [name]);
+
+    const logout = ()=>{
+      sessionStorage.clear();
+      navigate('/login')
+    }
 
     return (
         <div className="profile-page">
@@ -40,6 +47,7 @@ function Profile() {
             <span>{winRatio}</span>
           </div>
         </div>
+        <button onClick={logout}>Logout</button>
       </div>
     );
 }

@@ -41,3 +41,13 @@ exports.login = async (req, res) => {
 		return res.json({ status: 'error', user: false })
 	}
 };
+
+exports.getUser = async (req, res) => {
+    const user = await User.findOne({
+					name: req.params.user,
+				})
+	if(user)
+	return res.json({ok:true, user})
+	else
+	return res.json({ok:false})
+}

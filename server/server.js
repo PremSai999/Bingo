@@ -7,6 +7,7 @@ const socketIo = require('socket.io');
 const mongoose = require('mongoose')
 const userRoute = require('./routes/userRoute');
 const gameRoute = require('./routes/gameRoute');
+const mailRoute = require('./routes/mailRoute');
 const Game = require('./models/game.model');
 const port =process.env.PORT;
 const mongo_url =  process.env.MONGO_URL
@@ -15,6 +16,7 @@ app.use(cors())
 app.use(express.json())
 app.use('/api',userRoute)
 app.use('/',gameRoute)
+app.use('/mail',mailRoute)
 
 mongoose.connect(mongo_url)
 

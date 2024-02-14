@@ -127,3 +127,31 @@ export const getGameStats =  async (name)=>{
     const data = await res.json();
     return data 
 }
+
+export const sendWinnerMail = async (name)=>{
+    console.log("entered")
+    const data = await fetch(`${URL}/api/getUser/${name}`,{
+                    method:"GET"
+                })
+    const userDetails = await data.json();
+    if(userDetails.ok){
+        const res = await fetch(`${URL}/mail/sendMail`,{
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            name,
+            email:userDetails.user.email
+            }),
+            })
+        const win_data = await res.json()
+        if(win_data.status==='ok'){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
+}

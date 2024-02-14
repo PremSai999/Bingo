@@ -20,24 +20,6 @@ function Index() {
         setRoomId(room);
         break;
       }
-      // const res = await fetch("http://localhost:4000/isUnique",{
-      //                   method: 'POST',
-      //                   headers: {
-      //                     'Content-Type': 'application/json',
-      //                   },
-      //                   body: JSON.stringify({
-      //                     room,
-      //                     name:sessionStorage.getItem("name"),
-      //                     totalPlayers:numPlayers
-      //                   }),
-      //                 })
-      // const data = await res.json()
-      // console.log(data.status)
-      // if (data.status==="ok"){
-      //   sessionStorage.setItem("room",room);
-      //   setRoomId(room);
-      //   break;
-      // }
     }
     navigate('/fill')
 
