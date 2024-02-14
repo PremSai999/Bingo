@@ -10,6 +10,7 @@ function Login() {
     const {email, setEmail, password, setPassword} = useContext(UserContext);
 
     async function loginUser(event) {
+		console.log( process.env.REACT_APP_SERVER_URL)
 		event.preventDefault()
 
 		const data = await login(email, password);
