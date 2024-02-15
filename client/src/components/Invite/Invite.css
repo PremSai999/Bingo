@@ -1,0 +1,48 @@
+.invite-container {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color:rgb(241, 239, 239);
+  }
+  
+  .invite-text {
+    width: 60%;
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .invite-list {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto; 
+    border-radius: 5px;
+  }
+  
+  .invite-list li {
+    padding: 20px;
+    font-size: 20px;
+  }
+  
+  .invite-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .invite-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  .invite-button:hover {
+    background-color: #0056b3;
+  }
+  

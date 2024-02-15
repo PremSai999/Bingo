@@ -7,6 +7,7 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import copy from "clipboard-copy";
 import {toast } from 'react-toastify';
 import './FillMatrix.css'
+import Invite from '../Invite/Invite';
 
 function FillMatrix() {
     const {matrix, setMatrix, roomId, setRoomId} = useContext(BingoContext);
@@ -56,10 +57,14 @@ function FillMatrix() {
     }
 
     return (
-
-        <div className="matrix-container">
+        <div style={{
+            display: 'flex',
+            width: '100%',
+            height: '70vh',
+            alignItems: 'center'
+          }}>
+        <div className="matrix-container" style={{width: "70%"}}>
             <h1>Room Code: {roomId} <FontAwesomeIcon icon={faCopy} onClick={copiedToClipboard} style={{ color:"#a6a6a6",cursor: 'pointer' }} /></h1>
-            {/* <ToastContainer />   */}
             {matrix.map((row, rowIndex) => (
             <div key={rowIndex} className="matrix-row">
                 {row.map((number, colIndex) => (
@@ -75,6 +80,10 @@ function FillMatrix() {
             ))}
             <button onClick={startGame}>Ready</button>
             <button onClick={temp}>temp</button>
+        </div>
+        <div style={{width: "30%",border:"1px solid #ccc",borderRadius:"5px", margin:"5%"}}>
+            <Invite/>
+        </div>
         </div>
     )
 }

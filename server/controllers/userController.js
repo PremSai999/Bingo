@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
 		email: req.body.email,
 	})
 	if (!user) {
-		return { status: 'error', error: 'Invalid login' }
+		return res.json({ status: 'error', error: 'Invalid login' })
 	}
 	const isPasswordValid = await bcrypt.compare(
 		req.body.password,
@@ -50,4 +50,32 @@ exports.getUser = async (req, res) => {
 	return res.json({ok:true, user})
 	else
 	return res.json({ok:false})
+}
+
+exports.getUsers = async (req, res) => {
+    const users = await User.find({})
+	if(users)
+	return res.json({ok:true, users})
+	else
+	return res.json({ok:false})
+}
+
+exports.invite = async (req, res)=>{
+	const { query } = req.query;
+	const searchQuery = {
+							index: "searchUser",
+							text: {
+							query,
+							path: {
+								wildcard: "*"
+							}
+							}
+						}
+  try {
+    const user = await User.aggregate([{$search: searchQuery}]);
+	console.log(user)
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }

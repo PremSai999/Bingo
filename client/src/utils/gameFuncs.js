@@ -155,3 +155,41 @@ export const sendWinnerMail = async (name)=>{
     }
     
 }
+
+export const inviteDetails = async (query)=>{
+    const response = await fetch(`${URL}/api/search?query=${query}`,{
+        method: "GET"
+    });
+	const data = await response.json();
+    return data;
+}
+
+export const sendMailInvite = async(name,email,room)=>{
+    const res = await fetch(`${URL}/mail/sendMailInvite`,{
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+        name,
+        email,
+        room
+        }),
+        })
+    const data = await res.json()
+    if(data.status==='ok'){
+        return true
+    }
+    else{
+        return false
+    }
+}
+
+export const getUsers = async()=>{
+    const res = await fetch(`${URL}/api/getUsers`,{method:'GET'})
+    const data = await res.json()
+    if(data.ok){
+        return data.users;
+    }
+    return null;
+}
