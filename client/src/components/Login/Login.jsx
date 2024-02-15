@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { login } from '../../utils/gameFuncs'
 import { toast } from 'react-toastify'
 import '../../App.css'
+import { Input } from '../ui/input'
+import { Button } from '../ui/button'
 
 function Login() {
 	const navigate = useNavigate();
@@ -27,21 +29,21 @@ function Login() {
 		<div className='register-form'>
 			<h1>Login</h1>
 			<form onSubmit={loginUser}>
-				<input
+				<Input
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					type="email"
 					placeholder="Email"
 				/>
 				<br />
-				<input
+				<Input
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					type="password"
 					placeholder="Password"
 				/>
 				<br />
-				<input type="submit" value="Login" />
+				<Button type="submit">Login</Button>
 			</form>
 		</div>
 	)
