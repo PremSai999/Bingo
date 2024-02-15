@@ -37,7 +37,7 @@ function Invite() {
     }
   
     return (
-        players.length>1 && <div className="invite-container">
+        <div className="invite-container">
         <h1>Invite Players</h1>
         <input
         className='invite-text'

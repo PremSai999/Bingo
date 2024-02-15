@@ -1,33 +1,52 @@
 const transporter = require('../models/mail.model')
+const emailExistence = require('email-existence');
 
 exports.sendWinnerMail = async(req, res)=>{
     const {name, email} = req.body
     let mailOptions = {
-        from: '"Bingo Game" <your-email@gmail.com>',
+        from: '"Bingo Game" <prem9774@gmail.com>',
         to: email,
         subject: `Hello ${name}`,
         html: `<b>You've Won the bingo game</b>`
     };
-    const data = await transporter.sendMail(mailOptions)
-    console.log(data)
-    if(data)
-    res.json({ status: 'ok' , message:'Email sent successfully'})
-    else
-    res.json({ status: 'error' , message:'Error sending email:'});
+    emailExistence.check(email, async function(err, data) {
+        if (err) {
+            res.json({ status: 'error' , message:'Error sending email'});
+        } 
+        else {
+            if(data){
+                const data = await transporter.sendMail(mailOptions)
+                if(data)
+                res.json({ status: 'ok' , message:'Email sent successfully'})
+            }
+            else{
+                res.json({ status: 'error' , message:'Wrong email'});
+            }
+        }
+    }); 
 }
 
 exports.sendMailInvite = async(req, res)=>{
     const {name, email, room} = req.body
     let mailOptions = {
-        from: '"Bingo Game" <your-email@gmail.com>',
+        from: '"Bingo Game" <premdb9774$@gmail.com>',
         to: email,
         subject: `Hello ${name}`,
         html: `<h3>You've been invited to the game</h3> <b>Room Code: <p>${room}</p></b>`
     };
-    const data = await transporter.sendMail(mailOptions)
-    console.log(data)
-    if(data)
-    res.json({ status: 'ok' , message:'Email sent successfully'})
-    else
-    res.json({ status: 'error' , message:'Error sending email:'});
+    emailExistence.check(email, async function(err, data) {
+        if (err) {
+            res.json({ status: 'error' , message:'Error sending email'});
+        } 
+        else {
+            if(data){
+                const data = await transporter.sendMail(mailOptions)
+                if(data)
+                res.json({ status: 'ok' , message:'Email sent successfully'})
+            }
+            else{
+                res.json({ status: 'error' , message:'Wrong email'});
+            }
+        }
+    }); 
 }

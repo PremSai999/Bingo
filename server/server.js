@@ -18,7 +18,7 @@ app.use('/api',userRoute)
 app.use('/',gameRoute)
 app.use('/mail',mailRoute)
 
-mongoose.connect(mongo_url)
+mongoose.connect(mongo_url).then(()=>{console.log("connected")})
 
 const server = http.createServer(app); 
 const io = socketIo(server, {
@@ -61,3 +61,5 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+module.exports = server;

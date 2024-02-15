@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
 		email: req.body.email,
 	})
 	if (!user) {
-		return res.json({ status: 'error', error: 'Invalid login' })
+		return res.json({ status: 'error', error: 'Invalid Email' })
 	}
 	const isPasswordValid = await bcrypt.compare(
 		req.body.password,
@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
 		)
 		return res.json({ status: 'ok', user: token, name:user.name })
 	} else {
-		return res.json({ status: 'error', user: false })
+		return res.json({ status: 'error', error: "Invalid Password" })
 	}
 };
 
