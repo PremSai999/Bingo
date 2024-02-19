@@ -9,8 +9,10 @@ function Modal({ winner }) {
     
     const onClose = ()=>{
         navigate('/')
+        window.location.reload()
     }
     useEffect(()=>{
+      sessionStorage.removeItem("matrix")
       if(winner===name){
         sendWinnerMail(name).then((res)=>{
           console.log(res)

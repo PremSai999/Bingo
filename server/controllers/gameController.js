@@ -4,8 +4,7 @@ exports.isUnique = async (req, res)=>{
 	const room = await Game.findOne({
 		id : req.body.room,
 	})
-	if (!room) {
-		console.log(req.body)
+	if (!room && room!==undefined) {
 		const data = await Game.create({
 			id : req.body.room,
 			leader : req.body.name,
@@ -49,7 +48,7 @@ exports.updateReady = async (req, res)=>{
 		id : req.body.roomId,
 	},{$inc : {readyCount:1}})
 	if (room) {
-		return res.json({ status: 'ok', full:room.totalPlayers===room?.players?.length})
+		return res.json({ status: 'ok'})
 	}
 	else{
 		return res.json({ status: 'error'})
@@ -99,8 +98,8 @@ exports.getGameStats = async (req, res)=>{
 					}
 				])
 
-	if(gamesPlayed.length!==0){
-		if(gamesWon.length!==0){
+	if(gamesPlayed && gamesPlayed.length!==0){
+		if(gamesWon && gamesWon.length!==0){
 			res.json({gamesPlayed:gamesPlayed[0].totalGamesPlayed,
 					  gamesWon:gamesWon[0].totalGamesWon})
 		}

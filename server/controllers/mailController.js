@@ -11,13 +11,17 @@ exports.sendWinnerMail = async(req, res)=>{
     };
     emailExistence.check(email, async function(err, data) {
         if (err) {
-            res.json({ status: 'error' , message:'Error sending email'});
+            res.json({ status: 'error' , error:err.message});
         } 
         else {
             if(data){
-                const data = await transporter.sendMail(mailOptions)
-                if(data)
-                res.json({ status: 'ok' , message:'Email sent successfully'})
+                try{
+                    await transporter.sendMail(mailOptions)
+                    res.json({ status: 'ok' , message:'Email sent successfully'})
+                }
+                catch(error){
+                    res.json({ status: 'error' , error:error.message});
+                }
             }
             else{
                 res.json({ status: 'error' , message:'Wrong email'});
@@ -36,13 +40,17 @@ exports.sendMailInvite = async(req, res)=>{
     };
     emailExistence.check(email, async function(err, data) {
         if (err) {
-            res.json({ status: 'error' , message:'Error sending email'});
+            res.json({ status: 'error' , error:err.message});
         } 
         else {
             if(data){
-                const data = await transporter.sendMail(mailOptions)
-                if(data)
-                res.json({ status: 'ok' , message:'Email sent successfully'})
+                try{
+                    await transporter.sendMail(mailOptions)
+                    res.json({ status: 'ok' , message:'Email sent successfully'})
+                }
+                catch(error){
+                    res.json({ status: 'error' , error:error.message});
+                }
             }
             else{
                 res.json({ status: 'error' , message:'Wrong email'});

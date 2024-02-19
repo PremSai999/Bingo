@@ -21,7 +21,7 @@ function Invite() {
       try {
         const data = await inviteDetails(query)
         console.log(data)
-        setPlayers(data);
+        setPlayers(data.user);
       } catch (error) {
         console.error(error);
       }

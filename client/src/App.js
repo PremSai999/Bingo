@@ -8,7 +8,6 @@ import Game from './components/Game/Game';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Join from './components/Join/Join';
-import TempGame from './components/Game/TempGame';
 import Profile from './components/Profile/Profile';
 import Chat from './components/Chat/Chat';
 import { ToastContainer } from 'react-toastify';
