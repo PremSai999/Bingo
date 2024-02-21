@@ -12,7 +12,6 @@ function isBingo(matrix) {
         count++;
       }
     }
-  
     if (matrix.every((row, index) => row[index].strike)) {
       count++;
     }
