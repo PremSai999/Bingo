@@ -2,19 +2,31 @@ html{
     margin:-10px;
 }
 body{
-  background-color: #f7f7f7;
+  background-image: url("/public/bgBingo.png");
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .register-form {
-    max-width: 400px;
+    max-width: 350px;
     margin: 5% auto;
+    margin-top: 12%;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    border: 1px solid #000;
+    border-radius: 7px;
+    background-color: #b799dc ;
+    opacity: 0.9;
   }
   .register-form h1 {
-    font-size: 24px;
+    font-family: "Kode Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bolder;
     margin-bottom: 20px;
   }
   .register-form input {
@@ -26,7 +38,7 @@ body{
   }
   .register-form input[type="submit"] {
     width: 95%;
-    background-color: #007bff;
+    background-color: #b8b8ff;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -34,6 +46,6 @@ body{
     cursor: pointer;
   }
   .register-form input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #9381ff;
   }
   

@@ -69,7 +69,7 @@ function FillMatrix() {
                 height: "70vh",
                 alignItems: "center",
             }}
-        >
+        >   
             <div className="matrix-container" style={{ width: "70%" }}>
                 <h1>
                     Room Code: {roomId}{" "}
@@ -94,9 +94,9 @@ function FillMatrix() {
                         ))}
                     </div>
                 ))}
-                <button onClick={startGame}>Ready</button>
+                <button className="btn" onClick={startGame}>Ready</button>
                 <p>OR</p>
-                <button onClick={temp}>temp</button>
+                <button className="btn" onClick={temp}>Random</button>
             </div>
             <div
                 style={{

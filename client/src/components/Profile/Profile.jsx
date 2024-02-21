@@ -47,7 +47,7 @@ function Profile() {
             <span>{winRatio}</span>
           </div>
         </div>
-        <button onClick={logout}>Logout</button>
+        <button className='btn' onClick={logout}>Logout</button>
       </div>
     );
 }

@@ -28,6 +28,7 @@ function Index() {
     navigate('/join');
   }
   return (
+    <div className="outer-container">
     <div className="player-selection-container">
       <h2>Select the number of players:</h2>
     <div className="player-selection">
@@ -44,6 +45,7 @@ function Index() {
     <div className="action-buttons">
       <button onClick={joinRoom}>Join Game</button>
     </div>
+  </div>
   </div>
   )
 }

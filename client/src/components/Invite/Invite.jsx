@@ -45,7 +45,7 @@ function Invite() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button className="btn" onClick={handleSearch}>Search</button>
         <ul className="invite-list">
           {players.map((player) => (
             <li key={player._id}>

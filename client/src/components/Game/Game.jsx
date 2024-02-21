@@ -90,6 +90,8 @@ function Game() {
           (socket && started && players)?
             <div className='game-container'> 
                 <div className='game-content'>
+                    
+                    <div className="matrix-container">
                     <div className="player-list">
                         {players.map((player, index) => (
                             <span
@@ -107,7 +109,6 @@ function Game() {
                     <span style={{ color: progress > 3 ? 'red' : 'green' }}>G</span>
                     <span style={{ color: progress > 4 ? 'red' : 'green' }}>O</span>
                     </div>
-                    <div className="matrix-container">
                         {matrix.map((row, rowIndex) => (
                         <div key={rowIndex} className={"matrix-row"}>
                             {row.map((number, colIndex) => (
@@ -129,8 +130,8 @@ function Game() {
                 </div>
             </div>
             :
-            <div>
-                Wait till others join the game...
+            <div className="waiting">
+                <h2>Wait till others join the game...</h2>
             </div>
     )
 }

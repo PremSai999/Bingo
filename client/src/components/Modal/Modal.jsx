@@ -24,7 +24,7 @@ function Modal({ winner }) {
           <div className="modal-content">
             <h2>Winner</h2>
             <p>{winner} has won the game!</p>
-            <button onClick={onClose}>Close</button>
+            <button className="btn" onClick={onClose}>Close</button>
           </div>
         </div>
     );

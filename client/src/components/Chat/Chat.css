@@ -1,10 +1,12 @@
    .chat-app {
     font-family: sans-serif;
+    
     max-width: 500px;
     margin: 0 auto;
     margin-top: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: rgb(255, 255, 255,0.8);
   }
   
   .chat-title{
@@ -25,17 +27,17 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     word-wrap: break-word;
-    max-width: 70%;
+    max-width: 65%;
     overflow-wrap: break-word;
     position: relative;
     display: block;
     text-align: justify;
+    background-color: #01baef;
   }
   
   .message.right {
     text-align: justify;
-    margin-left: 30%;
-    background-color: #f2f2f2;
+    margin-left: 35%;
   }
   
   .sender {

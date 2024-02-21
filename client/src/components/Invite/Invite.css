@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color:rgb(241, 239, 239);
+    background-color:rgba(255, 255, 255, 0.9);
   }
   
   .invite-text {
@@ -26,6 +26,7 @@
   .invite-list li {
     padding: 20px;
     font-size: 20px;
+    font-weight: bold;
   }
   
   .invite-list li:last-child {

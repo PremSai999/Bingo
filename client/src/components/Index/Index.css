@@ -1,41 +1,54 @@
-.player-selection-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh; 
-  font-size: 18px;
-}
-
-.player-selection {
-  margin-bottom: 20px; 
-}
-
-.player-selection h2 {
-  font-size: 26px; 
-  margin-bottom: 10px; 
-}
-
-select, button {
-  font-size: 18px; 
-  padding: 8px 16px;
-  border-radius: 5px; 
-}
-
-.or {
-  margin: 20px 0; 
-}
-
-.action-buttons {
-  display: flex;
-}
-
-.action-buttons button {
-  margin-right: 10px; 
-}
-
-.action-buttons button:hover {
-  background-color: #ddd; 
-}
-
+   .outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+  }
+  
+  .player-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255,0.8);
+    border: 2px solid #585858;
+    border-radius: 7px;
+    padding: 20px 50px;
+    font-size: 18px;
+  }
+  
+  .player-selection {
+    margin-bottom: 20px; 
+  }
+  
+  .player-selection h2 {
+    font-size: 26px; 
+    margin-bottom: 10px; 
+  }
+  
+  select {
+    background-color: #b5defa;
+    font-size: 18px; 
+    padding: 8px 16px;
+    border-radius: 5px; 
+  }
+  
+  .or {
+    margin: 20px 0; 
+  }
+  
+  .action-buttons {
+    display: flex;
+  }
+  
+  .action-buttons button{
+    font-size: 18px; 
+    padding: 8px 16px;
+    border-radius: 5px; 
+    background-color: rgb(209, 155, 225);
+    margin-right: 10px; 
+  }
+  
+  .action-buttons button:hover {
+    background-color: #c22cc8; 
+  }
   

@@ -41,3 +41,19 @@
     margin-top: 10px;
 }
   
+.waiting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  
+}
+
+.waiting h2 {
+  font-size: 24px;
+  text-align: center;
+  background-color: rgb(255,255,255,0.7);
+  border: 1px solid rgb(92, 92, 92);
+  padding: 25px;
+  border-radius: 7px;
+}

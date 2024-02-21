@@ -46,7 +46,7 @@ function Join() {
           value={roomId}
           onChange={(e) => setRoomId(e.target.value)}
         />
-        <button onClick={joinRoom}>Join Room</button>
+        <button className="btn" onClick={joinRoom}>Join Room</button>
       </div>
     </div>
     </div>
