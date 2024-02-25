@@ -10,7 +10,8 @@ exports.isUnique = async (req, res)=>{
 			leader : req.body.name,
 			players : [req.body.name],
 			readyCount : 0,
-			totalPlayers: req.body.totalPlayers
+			totalPlayers: req.body.totalPlayers,
+			bingoSize: req.body.bingoSize
 		})
 		return res.json({ status: 'ok', data})
 	}
@@ -24,7 +25,7 @@ exports.checkRoom = async (req, res)=>{
 		id : req.body.roomId,
 	})
 	if (room) {
-		return res.json({ status: 'ok', full:room.totalPlayers===room.players.length})
+		return res.json({ status: 'ok', bingoSize: room.bingoSize, full:room.totalPlayers===room.players.length})
 	}
 	else{
 		return res.json({ status: 'error'})
@@ -54,6 +55,16 @@ exports.updateReady = async (req, res)=>{
 		return res.json({ status: 'error'})
 	}
 
+}
+
+exports.getRoomData = async(req, res)=>{
+	const data = await Game.findOne({id:req.body.roomId});
+	if(data){
+		return res.json({ok:true,data})
+	}
+	else{
+		return res.json({ok:false})
+	}
 }
 
 exports.getPlayers = async (req, res)=>{

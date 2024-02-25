@@ -7,6 +7,7 @@ router.post('/checkRoom', gameController.checkRoom);
 router.post('/updatePlayer', gameController.updatePlayer);
 router.post('/updateReady', gameController.updateReady);
 router.post('/getPlayers', gameController.getPlayers);
+router.post('/getRoomData', gameController.getRoomData);
 router.post('/getGameStats', gameController.getGameStats);
 
 module.exports = router;

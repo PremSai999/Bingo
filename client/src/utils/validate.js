@@ -1,5 +1,4 @@
-function isBingo(matrix) {
-    const size = 5;
+function isBingo(matrix, size) {
     let count = 0;
     for (let i = 0; i < size; i++) {
       if (matrix[i].every((number) => number.strike)) {

@@ -5,7 +5,7 @@ import { checkRoom, updatePlayer } from '../../utils/gameFuncs';
 import './Join.css'
 
 function Join() {
-  const {roomId, setRoomId} = useContext(BingoContext);
+  const {roomId, setRoomId, setBingoSize} = useContext(BingoContext);
   const name = sessionStorage.getItem('name');
   const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ function Join() {
         return;
       }
       sessionStorage.setItem("room",roomId);
+      setBingoSize(data.bingoSize)
       const data1 = await updatePlayer(roomId,name)
       if(data1.status==='ok')
         navigate('/fill');

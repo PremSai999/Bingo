@@ -50,7 +50,7 @@ export const checkStart = async (room)=>{
     }
 }
 
-export const isUnique = async (room, size, name)=>{
+export const isUnique = async (room, size, name, bingoSize)=>{
     const res = await fetch(`${URL}/isUnique`,{
                 method: 'POST',
                 headers: {
@@ -59,7 +59,8 @@ export const isUnique = async (room, size, name)=>{
                 body: JSON.stringify({
                     room,
                     name,
-                    totalPlayers:size
+                    totalPlayers:size,
+                    bingoSize
                 }),
                 })
     const data = await res.json();
@@ -102,6 +103,20 @@ export const updatePlayer = async (roomId, name)=>{
 
 export const updateReady = async (roomId)=>{
     const res = await fetch(`${URL}/updateReady`,{
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                roomId,
+                }),
+                })
+    const data = await res.json();
+    return data 
+}
+
+export const getRoomData =  async (roomId)=>{
+    const res = await fetch(`${URL}/getRoomData`,{
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',

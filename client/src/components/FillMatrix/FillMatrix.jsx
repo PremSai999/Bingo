@@ -10,7 +10,7 @@ import "./FillMatrix.css";
 import Invite from "../Invite/Invite";
 
 function FillMatrix() {
-    const { matrix, setMatrix, roomId, setRoomId } = useContext(BingoContext);
+    const { matrix, setMatrix, roomId, setRoomId, bingoSize } = useContext(BingoContext);
     const [count, setCount] = useState(1);
     const navigate = useNavigate();
 
@@ -20,6 +20,10 @@ function FillMatrix() {
             setRoomId(room);
         }
     }, [setRoomId]);
+
+    useEffect(()=>{
+        setMatrix(Array.from({ length: bingoSize }, () => Array(bingoSize).fill(null)))
+    },[bingoSize])
 
     const copiedToClipboard = () => {
         copy(roomId);
@@ -36,12 +40,12 @@ function FillMatrix() {
         console.log(matrix);
     };
     const temp = async () => {
-        const matrix = Array.from({ length: 5 }, () => Array.from({ length: 5 }, () => 0));
-        for (let i = 1; i <= 25; i++) {
+        const matrix = Array.from({ length: bingoSize }, () => Array.from({ length: bingoSize }, () => 0));
+        for (let i = 1; i <= bingoSize*bingoSize; i++) {
             let row, col;
             do {
-                row = Math.floor(Math.random() * 5);
-                col = Math.floor(Math.random() * 5);
+                row = Math.floor(Math.random() * bingoSize);
+                col = Math.floor(Math.random() * bingoSize);
             } while (matrix[row][col] !== 0);
             matrix[row][col] = {value:i, strike:false};
         }
@@ -52,7 +56,7 @@ function FillMatrix() {
         }
     };
     const startGame = async () => {
-        if (count === 26) {
+        if (count === (bingoSize*bingoSize)+1) {
             const data = await updateReady(roomId);
             if (data.status === "ok") {
                 setMatrix(matrix);
@@ -66,7 +70,7 @@ function FillMatrix() {
             style={{
                 display: "flex",
                 width: "100%",
-                height: "70vh",
+                height: "100vh",
                 alignItems: "center",
             }}
         >   

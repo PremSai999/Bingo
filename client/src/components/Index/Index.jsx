@@ -6,7 +6,7 @@ import { isUnique } from '../../utils/gameFuncs';
 import './Index.css'
 
 function Index() {
-  const {setRoomId} = useContext(BingoContext);
+  const {setRoomId, bingoSize, setBingoSize} = useContext(BingoContext);
   const [numPlayers, setNumPlayers] = useState(2);
   const name = sessionStorage.getItem('name');
   const navigate = useNavigate();
@@ -14,7 +14,8 @@ function Index() {
   const create = async ()=>{
       while (true){
       const room = generateRoom();
-      const data = await isUnique(room, numPlayers, name)
+      const data = await isUnique(room, numPlayers, name, bingoSize)
+      console.log(bingoSize)
       if(data){
         sessionStorage.setItem("room",room);
         setRoomId(room);
@@ -36,6 +37,14 @@ function Index() {
         <option value={2}>2 Players</option>
         <option value={3}>3 Players</option>
         <option value={4}>4 Players</option>
+      </select>
+    </div>
+    <h2 style={{marginTop:"0px"}}>Select bingo size:</h2>
+    <div className="player-selection">
+      <select value={bingoSize} onChange={(e)=>setBingoSize(parseInt(e.target.value))}>
+        <option value={4}>4*4</option>
+        <option value={5} defaultValue>5*5</option>
+        <option value={6}>6*6</option>
       </select>
     </div>
     <div className="action-buttons">

@@ -80,10 +80,11 @@ describe("Game controller test", () => {
                 players: ["player1"],
                 readyCount: 0,
                 totalPlayers: 4,
+                bingoSize: 5
             });
             await gameController.checkRoom(req, res);
             expect(res.json.calledOnce).to.be.true;
-            expect(res.json.calledWith({ status: "ok", full: false })).to.be
+            expect(res.json.calledWith({ status: "ok", full: false, bingoSize: 5 })).to.be
                 .true;
         });
 
@@ -94,10 +95,11 @@ describe("Game controller test", () => {
                 players: ["player1", "player2", "player3", "player4"],
                 readyCount: 4,
                 totalPlayers: 4,
+                bingoSize: 5
             });
             await gameController.checkRoom(req, res);
             expect(res.json.calledOnce).to.be.true;
-            expect(res.json.calledWith({ status: "ok", full: true })).to.be
+            expect(res.json.calledWith({ status: "ok", full: true, bingoSize: 5})).to.be
                 .true;
         });
 
@@ -192,6 +194,28 @@ describe("Game controller test", () => {
             await gameController.getPlayers(req, res);
             expect(res.json.calledOnce).to.be.true;
             expect(res.json.calledWith({ status: "error" })).to.be.true;
+        });
+    });
+
+    describe("getRoomData", () => {
+        it("should return room data if the room exists", async () => {
+            findOneStub.resolves({
+                id: "random",
+                data: "dummyData"
+            });
+            await gameController.getRoomData(req, res);
+            expect(res.json.calledOnce).to.be.true;
+            expect(res.json.calledWith({ ok:true, data:{
+                                            id: "random",
+                                            data: "dummyData"
+                                        } })).to.be.true;
+        });
+
+        it("should handle invalid input gracefully", async () => {
+            req.body = {};
+            await gameController.getRoomData(req, res);
+            expect(res.json.calledOnce).to.be.true;
+            expect(res.json.calledWith({ ok:false })).to.be.true;
         });
     });
 
