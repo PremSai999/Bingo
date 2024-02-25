@@ -28,13 +28,13 @@ function Join() {
     }
   }
 
-  useEffect(()=>{
-    const room= sessionStorage.getItem('room');
-    console.log('refresh')
-    if (room) {
-        setRoomId(room);
-    }
-  }, [setRoomId]);
+  // useEffect(()=>{
+  //   const room= sessionStorage.getItem('room');
+  //   console.log('refresh')
+  //   if (room) {
+  //       setRoomId(room);
+  //   }
+  // }, [setRoomId]);
 
   return (
     <div className='join-container'>

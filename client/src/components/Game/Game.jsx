@@ -29,7 +29,7 @@ function Game() {
                 checkStart(room).then((res) => {
                     if (res) {
                         setStarted(res.full);
-                        setGameSize(res.players.length)
+                        setGameSize(res.size)
                         setPlayers(res.players);
                     }
                 });

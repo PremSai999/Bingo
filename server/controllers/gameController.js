@@ -72,7 +72,7 @@ exports.getPlayers = async (req, res)=>{
 		id : req.body.room,
 	})
 	if (room) {
-		return res.json({ status: 'ok', players:room.players, full:room.readyCount>=room.totalPlayers})
+		return res.json({ status: 'ok', players:room.players, full:room.readyCount>=room.totalPlayers, size:room.totalPlayers})
 	}
 	else{
 		return res.json({ status: 'error'})

@@ -12,7 +12,6 @@ export const BingoProvider = ({ children }) => {
         if(data.ok){
           setMatrix(Array.from({ length: data.data.bingoSize }, () => Array(data.data.bingoSize).fill(null)))
           setBingoSize(data.data.bingoSize)
-          setRoomId(data.data.id)
         }
       };
       callThis()
