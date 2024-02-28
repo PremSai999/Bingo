@@ -168,6 +168,7 @@ describe("Game controller test", () => {
                     status: "ok",
                     players: ["player1", "player2"],
                     full: true,
+                    size: 2
                 })
             ).to.be.true;
         });
@@ -185,6 +186,7 @@ describe("Game controller test", () => {
                     status: "ok",
                     players: ["player1"],
                     full: false,
+                    size: 2
                 })
             ).to.be.true;
         });

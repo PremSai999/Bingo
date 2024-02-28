@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "nyc mocha ./test/controllerTest/*.test.js --exit -timeout 10000"
+    "test": "mocha ./test/controllerTest/*.test.js --exit -timeout 5000",
+    "coverage": "nyc npm run test"
   },
   "keywords": [],
   "author": "",
