@@ -1,6 +1,6 @@
 .profile-page {
     font-family: sans-serif;
-    width: 400px; /* Adjust width as needed */
+    width: 400px;
     margin: 0 auto;
     margin-top: 5%;
     padding: 20px;
@@ -8,21 +8,24 @@
     border-radius: 5px;
     background-color: rgb(255, 255, 255, 0.8);
   }
-  
-  .profile-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .info-item {
-    margin-bottom: 10px;
-    width: 48%; /* Adjust width if needed */
-  }
-  
-  .info-item label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
+
+.profile-page h1{
+  text-align: center;
+}
+
+.profile-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.info-item {
+  margin-bottom: 10px;
+  width: 48%;
+}
+
+.info-item label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}

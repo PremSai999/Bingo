@@ -8,15 +8,17 @@ const mongoose = require('mongoose')
 const userRoute = require('./routes/userRoute');
 const gameRoute = require('./routes/gameRoute');
 const mailRoute = require('./routes/mailRoute');
+const s3Route = require('./routes/s3Route');
 const Game = require('./models/game.model');
 const port =process.env.PORT;
 const mongo_url =  process.env.MONGO_URL
 
 app.use(cors())
-app.use(express.json())
+app.use(express.json({ limit: '50mb' }))
 app.use('/api',userRoute)
 app.use('/',gameRoute)
 app.use('/mail',mailRoute)
+app.use('/s3',s3Route)
 
 mongoose.connect(mongo_url).then(()=>{console.log("connected")})
 

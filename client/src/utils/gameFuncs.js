@@ -208,3 +208,15 @@ export const getUsers = async()=>{
     }
     return null;
 }
+
+export const uploadToS3 = async(fileData, username)=>{
+    const formData = new FormData();
+    formData.append("fileData", fileData)
+    formData.append("username", username)
+    const res = await fetch(`${URL}/s3/uploadFile`,{
+        method: 'POST',
+        body: formData,
+        })
+    const data = await res.json()
+    return data
+}
