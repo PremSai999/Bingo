@@ -6,14 +6,14 @@ import './ProfilePicture.css'
 
 const ProfilePicture = () => {
     const name = sessionStorage.getItem('name');
-    const [image, setImage] = useState(`https://bingo-profiles.s3.ap-south-1.amazonaws.com/${name}.jpeg`);
+    const [image, setImage] = useState(`https://bingo-profiles.s3.ap-south-1.amazonaws.com/${name}.jpeg?${Date.now()}`);
     const [add, setAdd] = useState(true)
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
         try {
             const response = await uploadToS3(file, name);
             if(response.ok){
-                    setImage(`https://bingo-profiles.s3.ap-south-1.amazonaws.com/${name}.jpeg`);
+                    setImage(`https://bingo-profiles.s3.ap-south-1.amazonaws.com/${name}.jpeg?${Date.now()}`);
                     setAdd(true);
                     alert("Profile picture Updated");
             }
