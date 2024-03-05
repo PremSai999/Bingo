@@ -17,9 +17,10 @@ function Invite() {
         }
       })
     },[])
-    const handleSearch = async () => {
+    const handleSearch = async (q) => {
       try {
-        const data = await inviteDetails(query)
+        setQuery(q)
+        const data = await inviteDetails(q)
         console.log(data)
         setPlayers(data.user);
       } catch (error) {
@@ -43,9 +44,9 @@ function Invite() {
         className='invite-text'
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => handleSearch(e.target.value)}
         />
-        <button className="btn" onClick={handleSearch}>Search</button>
+        <button className="btn" onClick={()=>handleSearch(query)}>Search</button>
         <ul className="invite-list">
           {players.map((player) => (
             <li key={player._id}>
